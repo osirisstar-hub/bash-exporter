@@ -5,7 +5,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o bash-exporter .
 
 FROM alpine:3.7
 WORKDIR /root/
-RUN apk update && apk add bash
+RUN apk update && apk add bash coreutils
 COPY --from=0 /go/src/github.com/gree-gorey/bash-exporter/cmd/bash-exporter/bash-exporter .
 COPY ./examples/* /scripts/
 CMD ["./bash-exporter"]
